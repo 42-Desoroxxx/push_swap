@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re fast refast
 
 GREEN = \033[1;32m
 BLUE = \033[1;34m
@@ -30,10 +30,6 @@ SRCS := $(shell find $(SRC) -name "*.c")
 OBJS := $(patsubst $(SRC)/%,$(OBJ)/%,$(SRCS:.c=.o))
 
 all: $(NAME)
-
-fast: $(DEPS) libft/libft.a
-	@echo "$(BLACK)MAKING THE $(RED)ULTIMATE$(BLACK) APP FORM$(RESET)"
-	@$(CC) $(FASTFLAGS) $(SRCS) ./libft/libft.a -I$(DEPS) -Ilibft/includes -o $(NAME)
 
 libft/libft.a:
 	@$(MAKE) -s -C libft
@@ -62,3 +58,11 @@ fclean: clean
 
 re: fclean
 	@$(MAKE) --no-print-directory all
+
+fast: CFLAGS += $(FASTFLAGS)
+fast:
+	@echo "$(BLACK)MAKING THE $(RED)ULTIMATE$(BLACK) APP FORM$(RESET)"
+	@$(MAKE) --no-print-directory CFLAGS="$(CFLAGS)"
+
+refast: fclean
+	@$(MAKE) fast --no-print-directory

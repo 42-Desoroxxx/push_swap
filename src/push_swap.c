@@ -6,14 +6,13 @@
 /*   By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 08:55:12 by llage             #+#    #+#             */
-/*   Updated: 2025/02/05 08:55:12 by llage            ###   ########.fr       */
+/*   Updated: 2025/02/13 04:51:26 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "swap_push.h"
+#include "push_swap.h"
 
-// TODO: Parsing
-int	main()
+int	main(void)
 {
-	ft_printf("World, hello!\n");
+	ft_printf("meow\n");
 }
