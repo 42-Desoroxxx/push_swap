@@ -13,6 +13,7 @@ set(SOURCES
 	src/operations/rotate_operations.c
 	src/operations/swap_operations.c
 	src/utils/stack_utils.c
+	src/algorithms/butterfly.c
 	)
 
 add_executable(push_swap ${SOURCES})

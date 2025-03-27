@@ -40,6 +40,8 @@ static void internal_rotate(const struct s_stack *stack, const bool reverse)
 void rotate(const struct s_stack *stack)
 {
 	internal_rotate(stack, false);
+	if (stack->size <= 1)
+		return;
 	print_operation(stack->name, "r");
 }
 
@@ -53,6 +55,8 @@ void rotate_stacks(const struct s_stacks *stacks)
 void reverse_rotate(const struct s_stack *stack)
 {
 	internal_rotate(stack, true);
+	if (stack->size <= 1)
+		return;
 	print_operation(stack->name, "rr");
 }
 

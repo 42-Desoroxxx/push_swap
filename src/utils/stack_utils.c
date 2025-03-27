@@ -59,11 +59,11 @@ struct s_stacks init_stacks(const size_t capacity, char *argv[])
 	stacks.stack_a.name = 'a';
 	stacks.stack_a.capacity = capacity;
 	stacks.stack_a.size = 0;
-	stacks.stack_a.values = ft_calloc(capacity, sizeof(int));
+	stacks.stack_a.values = ft_calloc(capacity, sizeof(long long));
 	stacks.stack_b.name = 'b';
 	stacks.stack_b.capacity = capacity;
 	stacks.stack_b.size = 0;
-	stacks.stack_b.values = ft_calloc(capacity, sizeof(int));
+	stacks.stack_b.values = ft_calloc(capacity, sizeof(long long));
 	fill_stacks(&stacks, capacity, argv);
 	return (stacks);
 }
@@ -72,4 +72,18 @@ void free_stacks(const struct s_stacks *stacks)
 {
 	free(stacks->stack_a.values);
 	free(stacks->stack_b.values);
+}
+
+size_t get_index(const struct s_stack *stack, const int value)
+{
+	size_t i;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->values[i] == value)
+			return (i);
+		i++;
+	}
+	return (0);
 }

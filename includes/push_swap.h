@@ -19,10 +19,10 @@
 
 typedef struct s_stack
 {
-	char	name;
-	size_t	capacity;
-	size_t	size;
-	int		*values;
+	char		name;
+	size_t		capacity;
+	size_t		size;
+	long long	*values;
 }	t_stack;
 
 typedef struct s_stacks
@@ -31,11 +31,15 @@ typedef struct s_stacks
 	t_stack	stack_b;
 }	t_stacks;
 
+// Algorithms
+
+void butterfly(struct s_stacks *stacks);
 
 // Utils
 
 struct s_stacks init_stacks(const size_t capacity, char *argv[]);
 void free_stacks(const struct s_stacks *stacks);
+size_t get_index(const struct s_stack *stack, const int value);
 
 // Operations
 

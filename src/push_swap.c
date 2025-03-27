@@ -33,5 +33,9 @@ int	main(int argc, char *argv[])
 	}
 	stacks = init_stacks(argc - 1, argv++);
 	print_stack(&stacks.stack_a);
+	print_stack(&stacks.stack_b);
+	butterfly(&stacks);
+	print_stack(&stacks.stack_a);
+	print_stack(&stacks.stack_b);
 	free_stacks(&stacks);
 }
