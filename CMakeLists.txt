@@ -12,6 +12,7 @@ set(SOURCES
 	src/operations/push_operations.c
 	src/operations/rotate_operations.c
 	src/operations/swap_operations.c
+	src/utils/stack_utils.c
 	)
 
 add_executable(push_swap ${SOURCES})

@@ -12,38 +12,6 @@
 
 #include "push_swap.h"
 
-static struct s_stacks init_stacks(const int capacity)
-{
-	struct s_stacks stacks;
-
-	stacks.stack_a.name = 'a';
-	stacks.stack_a.capacity = capacity;
-	stacks.stack_a.size = 0;
-	stacks.stack_a.values = ft_calloc(capacity, sizeof(int));
-
-	stacks.stack_b.name = 'b';
-	stacks.stack_b.capacity = capacity;
-	stacks.stack_b.size = 0;
-	stacks.stack_b.values = ft_calloc(capacity, sizeof(int));
-
-	return (stacks);
-}
-
-static void free_stacks(const struct s_stacks *stacks)
-{
-	free(stacks->stack_a.values);
-	free(stacks->stack_b.values);
-}
-
-static void fill_stacks(struct s_stacks *stacks, int argc, char *argv[])
-{
-	int i;
-
-	i = argc;
-	while (i > 1)
-		stacks->stack_a.values[stacks->stack_a.size++] = ft_atoi(argv[--i]);
-}
-
 // static void print_stack(const struct s_stack *stack)
 // {
 // 	size_t i;
@@ -64,7 +32,6 @@ int	main(int argc, char *argv[])
 		ft_printf("Usage: %s <value 0> <value 1> ...\n", argv[0]);
 		return (1);
 	}
-	stacks = init_stacks(argc - 1);
-	fill_stacks(&stacks, argc, argv);
+	stacks = init_stacks(argc - 1, argv++);
 	free_stacks(&stacks);
 }

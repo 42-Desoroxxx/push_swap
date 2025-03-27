@@ -31,6 +31,14 @@ typedef struct s_stacks
 	t_stack	stack_b;
 }	t_stacks;
 
+
+// Utils
+
+struct s_stacks init_stacks(const size_t capacity, char *argv[]);
+void free_stacks(const struct s_stacks *stacks);
+
+// Operations
+
 void	print_operation(const char stack_name, char *operation);
 
 void	push(struct s_stack *target, struct s_stack *source);
