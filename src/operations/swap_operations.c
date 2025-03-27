@@ -19,8 +19,8 @@ static void	internal_swap(const struct s_stack *stack, const bool print)
 	if (stack->size <= 1)
 		return ;
 	tmp = stack->values[stack->size - 1];
-	stack->values[stack->size - 1] = stack->values[0];
-	stack->values[0] = tmp;
+	stack->values[stack->size - 1] = stack->values[stack->size - 2];
+	stack->values[stack->size - 2] = tmp;
 
 	if (print)
 		print_operation(stack->name, "s");

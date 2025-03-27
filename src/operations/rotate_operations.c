@@ -12,21 +12,32 @@
 
 #include <push_swap.h>
 
-static void	internal_rotate(const struct s_stack *stack, const bool reverse,const bool print)
+static void	internal_rotate(const struct s_stack *stack, const bool reverse)
 {
-	int
-
 	if (stack->size <= 1)
-		return ;
+		return;
 
-
-	if (print)
-		print_operation(stack->name, "r");
+	if (reverse) {
+		// Reverse rotation
+		int last = stack->values[stack->size - 1];
+		for (size_t i = stack->size - 1; i > 0; i--) {
+			stack->values[i] = stack->values[i - 1];
+		}
+		stack->values[0] = last;
+	} else {
+		// Forward rotation
+		int first = stack->values[0];
+		for (size_t i = 0; i < stack->size - 1; i++) {
+			stack->values[i] = stack->values[i + 1];
+		}
+		stack->values[stack->size - 1] = first;
+	}
 }
 
 void	rotate(const struct s_stack *stack)
 {
-	internal_rotate(stack, true);
+	internal_rotate(stack, false);
+	print_operation(stack->name, "r");
 }
 
 void	rotate_stacks(const struct s_stacks *stacks)
@@ -35,4 +46,18 @@ void	rotate_stacks(const struct s_stacks *stacks)
 	internal_rotate(&stacks->stack_b, false);
 
 	print_operation(0, "rr");
+}
+
+void	reverse_rotate(const struct s_stack *stack)
+{
+	internal_rotate(stack, true);
+	print_operation(stack->name, "rr");
+}
+
+void	reverse_rotate_stacks(const struct s_stacks *stacks)
+{
+	internal_rotate(&stacks->stack_a, true);
+	internal_rotate(&stacks->stack_b, true);
+
+	print_operation(0, "rrr");
 }

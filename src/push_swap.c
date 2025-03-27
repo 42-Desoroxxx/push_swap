@@ -47,6 +47,16 @@ static void fill_stacks(struct s_stacks *stacks, int argc, char *argv[])
 	}
 }
 
+static void print_stack(const struct s_stack *stack)
+{
+	size_t i;
+
+	ft_printf("Stack %c:\n", stack->name);
+	i = stack->size;
+	while (i)
+		ft_printf("%d\n", stack->values[--i]);
+}
+
 int	main(int argc, char *argv[])
 {
 	struct s_stacks stacks;
@@ -60,5 +70,21 @@ int	main(int argc, char *argv[])
 	fill_stacks(&stacks, argc, argv);
 	ft_printf("Stack A Size: %d\n", stacks.stack_a.size);
 	ft_printf("Stack B Size: %d\n", stacks.stack_b.size);
+	print_stack(&stacks.stack_a);
+	print_stack(&stacks.stack_b);
+
+	swap(&stacks.stack_a);
+	print_stack(&stacks.stack_a);
+
+	rotate(&stacks.stack_a);
+	print_stack(&stacks.stack_a);
+
+	reverse_rotate(&stacks.stack_a);
+	print_stack(&stacks.stack_a);
+
+	push(stacks.stack_b, stacks.stack_a);
+	print_stack(&stacks.stack_a);
+	print_stack(&stacks.stack_b);
+
 	free_stacks(&stacks);
 }

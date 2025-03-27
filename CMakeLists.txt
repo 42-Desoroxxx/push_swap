@@ -1,12 +1,21 @@
-cmake_minimum_required(VERSION 3.29)
-project(libft C)
+cmake_minimum_required(VERSION 3.31)
+project(push_swap C)
+
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
 
 add_subdirectory(libft)
 
-file(GLOB SOURCE_FILES "src/*.c")
+set(SOURCES
+	src/push_swap.c
+	src/operations/operations_printer.c
+	src/operations/push_operations.c
+	src/operations/rotate_operations.c
+	src/operations/swap_operations.c
+	)
 
-add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+add_executable(push_swap ${SOURCES})
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_CURRENT_SOURCE_DIR}/libft/includes)
+target_include_directories(push_swap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/includes)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ft)
+target_link_libraries(push_swap PRIVATE libft)
