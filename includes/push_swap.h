@@ -33,7 +33,7 @@ typedef struct s_stacks
 
 void	print_operation(const char stack_name, char *operation);
 
-void	push(struct s_stack target, struct s_stack source);
+void	push(struct s_stack *target, struct s_stack *source);
 
 void	swap(const struct s_stack *stack);
 void	swap_stacks(const struct s_stacks *stacks);

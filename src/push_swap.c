@@ -6,7 +6,7 @@
 /*   By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 08:55:12 by llage             #+#    #+#             */
-/*   Updated: 2025/02/13 04:51:26 by llage            ###   ########.fr       */
+/*   Updated: 2025/03/27 08:37:26 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static struct s_stacks init_stacks(const int capacity)
 	return (stacks);
 }
 
-static void free_stacks(struct s_stacks *stacks)
+static void free_stacks(const struct s_stacks *stacks)
 {
 	free(stacks->stack_a.values);
 	free(stacks->stack_b.values);
@@ -39,23 +39,21 @@ static void fill_stacks(struct s_stacks *stacks, int argc, char *argv[])
 {
 	int i;
 
-	i = 1;
-	while (i < argc)
-	{
-		stacks->stack_a.values[stacks->stack_a.size++] = ft_atoi(argv[i]);
-		i++;
-	}
+	i = argc;
+	while (i > 1)
+		stacks->stack_a.values[stacks->stack_a.size++] = ft_atoi(argv[--i]);
 }
 
-static void print_stack(const struct s_stack *stack)
-{
-	size_t i;
-
-	ft_printf("Stack %c:\n", stack->name);
-	i = stack->size;
-	while (i)
-		ft_printf("%d\n", stack->values[--i]);
-}
+// static void print_stack(const struct s_stack *stack)
+// {
+// 	size_t i;
+//
+// 	ft_printf("Stack %c:\n", stack->name);
+// 	i = stack->size;
+// 	while (i)
+// 		ft_printf("%d\n", stack->values[--i]);
+// 	ft_printf("\n");
+// }
 
 int	main(int argc, char *argv[])
 {
@@ -68,23 +66,5 @@ int	main(int argc, char *argv[])
 	}
 	stacks = init_stacks(argc - 1);
 	fill_stacks(&stacks, argc, argv);
-	ft_printf("Stack A Size: %d\n", stacks.stack_a.size);
-	ft_printf("Stack B Size: %d\n", stacks.stack_b.size);
-	print_stack(&stacks.stack_a);
-	print_stack(&stacks.stack_b);
-
-	swap(&stacks.stack_a);
-	print_stack(&stacks.stack_a);
-
-	rotate(&stacks.stack_a);
-	print_stack(&stacks.stack_a);
-
-	reverse_rotate(&stacks.stack_a);
-	print_stack(&stacks.stack_a);
-
-	push(stacks.stack_b, stacks.stack_a);
-	print_stack(&stacks.stack_a);
-	print_stack(&stacks.stack_b);
-
 	free_stacks(&stacks);
 }
