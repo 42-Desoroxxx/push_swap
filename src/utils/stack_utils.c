@@ -12,6 +12,36 @@
 
 #include "push_swap.h"
 
+static void normalize_stack(const struct s_stack *stack)
+{
+	int temp[stack->size];
+	int rank;
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		rank = 0;
+		j = 0;
+		while (j < stack->size)
+		{
+			if (stack->values[j] < stack->values[i])
+				rank++;
+			j++;
+		}
+		temp[i] = rank;
+		i++;
+	}
+	i = 0;
+	while (i < stack->size)
+	{
+		stack->values[i] = temp[i];
+		i++;
+	}
+}
+
+
 static void fill_stacks(struct s_stacks *stacks, const size_t capacity, char *argv[])
 {
 	size_t i;
@@ -19,6 +49,7 @@ static void fill_stacks(struct s_stacks *stacks, const size_t capacity, char *ar
 	i = capacity;
 	while (i)
 		stacks->stack_a.values[stacks->stack_a.size++] = ft_atoi(argv[i--]);
+	normalize_stack(&stacks->stack_a);
 }
 
 struct s_stacks init_stacks(const size_t capacity, char *argv[])

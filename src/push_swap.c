@@ -12,16 +12,15 @@
 
 #include "push_swap.h"
 
-// static void print_stack(const struct s_stack *stack)
-// {
-// 	size_t i;
-//
-// 	ft_printf("Stack %c:\n", stack->name);
-// 	i = stack->size;
-// 	while (i)
-// 		ft_printf("%d\n", stack->values[--i]);
-// 	ft_printf("\n");
-// }
+static void print_stack(const struct s_stack *stack)
+{
+	size_t i;
+
+	ft_printf("Stack %c:\n", stack->name);
+	i = stack->size;
+	while (i)
+		ft_printf("%d\n", stack->values[--i]);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -33,5 +32,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	stacks = init_stacks(argc - 1, argv++);
+	print_stack(&stacks.stack_a);
 	free_stacks(&stacks);
 }
