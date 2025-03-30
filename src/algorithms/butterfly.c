@@ -12,32 +12,84 @@
 
 #include <push_swap.h>
 
+// TODO: early returns (this kinda sucks)
+static long long find_next(const struct s_stack *stack, size_t start, const size_t end)
+{
+	size_t i;
+	size_t nextFromTop;
+	size_t nextFromBottom;
+	bool foundOne;
+
+	nextFromTop = 0;
+	nextFromBottom = 0;
+	foundOne = false;
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->values[i] >= (long long) start && stack->values[i] <= (long long) end)
+		{
+			nextFromTop = i;
+			if (!foundOne)
+			{
+				nextFromBottom = i;
+				foundOne = true;
+			}
+		}
+		i++;
+	}
+	if (!foundOne)
+		return (-1);
+	if ((stack->size - 1) - nextFromTop <= nextFromBottom + 1)
+		return (stack->values[nextFromTop]);
+	return (stack->values[nextFromBottom]);
+}
+
 static void push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 {
 	const size_t midpoint = (end + start) / 2;
-	size_t left;
 
-	left = end - start;
-	while (left)
+	while (find_next(&stacks->stack_a, start, end) != -1)
 	{
-		while (stacks->stack_a.values[stacks->stack_a.size - 1] < (long long) start || stacks->stack_a.values[stacks->stack_a.size - 1] > (long long) end)
-			rotate(&stacks->stack_a); // TODO: Function to get the next one in the most efficient way
+		bring_to_top(&stacks->stack_a, find_next(&stacks->stack_a, start, end));
 
 		push(&stacks->stack_b, &stacks->stack_a);
 
-		if (stacks->stack_b.values[stacks->stack_a.size - 1] < (long long) midpoint)
+		if (stacks->stack_b.values[stacks->stack_b.size - 1] <= (long long) midpoint)
 			rotate(&stacks->stack_b);
-		left--;
 	}
 }
 
 static void push_chunks(struct s_stacks *stacks, const size_t chunk_number)
 {
-	(void) chunk_number;
-	push_chunk(stacks, 4, 8);
+	size_t chunk_size = stacks->stack_a.size / chunk_number;
+	size_t remainder = stacks->stack_a.size % chunk_number;
+	size_t i;
+
+	i = 0;
+	while (i < chunk_number)
+	{
+		if (i == chunk_number - 1 || remainder == 0)
+			push_chunk(stacks, i * chunk_size, (i * chunk_size) + chunk_size);
+		else
+			push_chunk(stacks, i * chunk_size, (i * chunk_size) + chunk_size + remainder);
+		i++;
+	}
+}
+
+static void finish(struct s_stacks *stacks)
+{
+	while (stacks->stack_b.size > 0)
+	{
+		bring_to_top(&stacks->stack_b, (long long) stacks->stack_b.size - 1);
+		push(&stacks->stack_a, &stacks->stack_b);
+	}
 }
 
 void butterfly(struct s_stacks *stacks)
 {
-	push_chunks(stacks, 5);
+	if (stacks->stack_a.size <= 100)
+		push_chunks(stacks, 5);
+	else
+		push_chunks(stacks, 11);
+	finish(stacks);
 }

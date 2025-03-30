@@ -37,6 +37,10 @@ void butterfly(struct s_stacks *stacks);
 
 // Utils
 
+void print_ops();
+
+void	bring_to_top(const struct s_stack *stack, const long long value);
+
 struct s_stacks init_stacks(const size_t capacity, char *argv[]);
 void free_stacks(const struct s_stacks *stacks);
 size_t get_index(const struct s_stack *stack, const int value);

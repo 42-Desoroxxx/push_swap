@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_printer.c                               :+:      :+:    :+:   */
+/*   algorithm_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llage <llage@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 01:19:35 by llage             #+#    #+#             */
-/*   Updated: 2025/03/19 01:19:35 by llage            ###   ########.fr       */
+/*   Created: 2025/03/30 04:08:40 by llage             #+#    #+#             */
+/*   Updated: 2025/03/30 04:08:40 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-// ! TODO: Changed for convenience in testing
-static int operation_counter = 0;
-
-void	print_operation(const char stack_name, char *operation)
+void	bring_to_top(const struct s_stack *stack, const long long value)
 {
-	if (stack_name == 0)
-		ft_printf("%s\n", operation);
-	else
-		ft_printf("%s%c\n", operation, stack_name);
-	operation_counter++;
-}
+	size_t index;
 
-void print_ops()
-{
-	ft_printf("Operations: %d\n", operation_counter);
+	index = get_index(stack, value);
+	while (stack->values[stack->size - 1] != value)
+	{
+		if (index > (stack->size / 2) - 1)
+			rotate((stack));
+		else
+			reverse_rotate((stack));
+	}
 }
