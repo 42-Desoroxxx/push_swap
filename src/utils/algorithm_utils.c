@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <push_swap.h>
+#include <stdio.h>
 
 void	bring_to_top(struct s_stack *stack, const long long value)
 {
@@ -19,6 +20,7 @@ void	bring_to_top(struct s_stack *stack, const long long value)
 	index = get_index(stack, value);
 	while (stack->values[stack->size - 1] != value)
 	{
+		printf("current value: %lld\n", stack->values[stack->size - 1]);
 		if (index > (stack->size / 2) - 1)
 			rotate((stack));
 		else

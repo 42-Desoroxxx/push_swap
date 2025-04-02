@@ -28,6 +28,8 @@ int main(int argc, char *argv[])
 		swap(&stacks.stack_a);
 	else if (stacks.stack_a.size == 3)
 		three_sort(&stacks);
+	else if (stacks.stack_a.size <= 5)
+		meow_sort(&stacks);
 	else
 		butterfly_sort(&stacks);
 	free_stacks(&stacks);

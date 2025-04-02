@@ -14,6 +14,7 @@ set(SOURCES
 	src/operations/swap_operations.c
 	src/utils/stack_utils.c
 	src/utils/algorithm_utils.c
+	src/algorithms/three_sort.c
 	src/algorithms/meow_sort.c
 	src/algorithms/butterfly_sort.c
 	)

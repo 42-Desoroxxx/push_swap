@@ -34,6 +34,7 @@ typedef struct s_stacks
 // Algorithms
 
 void three_sort(struct s_stacks *stacks);
+void meow_sort(struct s_stacks *stacks);
 void butterfly_sort(struct s_stacks *stacks);
 
 // Utils

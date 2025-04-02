@@ -54,9 +54,6 @@ static void push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 
 		push(&stacks->stack_b, &stacks->stack_a);
 
-		if (end == 1 && stacks->stack_a.values[stacks->stack_a.size - 1] > stacks->stack_a.values[stacks->stack_a.size - 2])
-			swap(&stacks->stack_a);
-
 		if (stacks->stack_b.values[stacks->stack_b.size - 1] <= (long long) midpoint)
 			rotate(&stacks->stack_b);
 	}
@@ -69,11 +66,6 @@ static void push_chunks(struct s_stacks *stacks, const size_t chunk_number)
 	size_t i;
 
 	i = 0;
-	if (chunk_number == 1)
-	{
-		push_chunk(stacks, 0, 1);
-		return;
-	}
 	while (i < chunk_number)
 	{
 		if (i == chunk_number - 1 || remainder == 0)
@@ -95,8 +87,6 @@ static void finish(struct s_stacks *stacks)
 
 void butterfly_sort(struct s_stacks *stacks)
 {
-	if (stacks->stack_a.size <= 5)
-		push_chunks(stacks, 1);
 	if (stacks->stack_a.size <= 100)
 		push_chunks(stacks, 5);
 	else
