@@ -14,8 +14,8 @@
 
 static void normalize_stack(const struct s_stack *stack)
 {
-	int temp[stack->size];
-	int rank;
+	int    temp[stack->size];
+	int    rank;
 	size_t i;
 	size_t j;
 
@@ -41,21 +41,43 @@ static void normalize_stack(const struct s_stack *stack)
 	}
 }
 
-
-static void fill_stacks(struct s_stacks *stacks, const size_t capacity, char *argv[])
+static void fill_stacks(struct s_stacks *stacks, size_t capacity,
+						char *argv[], const bool one_arg)
 {
-	size_t i;
+	char **temp;
 
-	i = capacity;
-	while (i)
-		stacks->stack_a.values[stacks->stack_a.size++] = ft_atoi(argv[i--]);
+	if (one_arg)
+	{
+		temp = ft_split(argv[1], ' ');
+		while (capacity)
+		{
+			stacks->stack_a.values[stacks->stack_a.size++] = ft_atoi(temp[capacity - 1]);
+			capacity--;
+		}
+		free(temp);
+	}
+	else
+	{
+		while (capacity)
+			stacks->stack_a.values[stacks->stack_a.size++] = ft_atoi(argv[capacity--]);
+	}
 	normalize_stack(&stacks->stack_a);
 }
 
-struct s_stacks init_stacks(const size_t capacity, char *argv[])
+struct s_stacks init_stacks(size_t capacity, char *argv[])
 {
+	const bool      one_arg = capacity == 1;
 	struct s_stacks stacks;
+	char **temp;
 
+	if (one_arg)
+	{
+		temp = ft_split(argv[1], ' ');
+		capacity = 0;
+		while (temp[capacity] != NULL)
+			capacity++;
+		free(temp);
+	}
 	stacks.stack_a.name = 'a';
 	stacks.stack_a.capacity = capacity;
 	stacks.stack_a.size = 0;
@@ -64,7 +86,7 @@ struct s_stacks init_stacks(const size_t capacity, char *argv[])
 	stacks.stack_b.capacity = capacity;
 	stacks.stack_b.size = 0;
 	stacks.stack_b.values = ft_calloc(capacity, sizeof(long long));
-	fill_stacks(&stacks, capacity, argv);
+	fill_stacks(&stacks, capacity, argv, one_arg);
 	return (stacks);
 }
 

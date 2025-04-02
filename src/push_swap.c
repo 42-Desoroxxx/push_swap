@@ -22,16 +22,17 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 	stacks = init_stacks(argc - 1, argv++);
-	if (is_sorted(&stacks.stack_a))
-		return (0);
-	if (stacks.stack_a.size == 2)
-		swap(&stacks.stack_a);
-	else if (stacks.stack_a.size == 3)
-		three_sort(&stacks);
-	else if (stacks.stack_a.size <= 5)
-		meow_sort(&stacks);
-	else
-		butterfly_sort(&stacks);
+	if (!is_sorted(&stacks.stack_a) && stacks.stack_a.size > 1)
+	{
+		if (stacks.stack_a.size == 2)
+			swap(&stacks.stack_a);
+		else if (stacks.stack_a.size == 3)
+			three_sort(&stacks);
+		else if (stacks.stack_a.size <= 5)
+			meow_sort(&stacks);
+		else
+			butterfly_sort(&stacks);
+	}
 	free_stacks(&stacks);
 	print_ops();
 }

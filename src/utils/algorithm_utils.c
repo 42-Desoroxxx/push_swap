@@ -20,11 +20,10 @@ void	bring_to_top(struct s_stack *stack, const long long value)
 	index = get_index(stack, value);
 	while (stack->values[stack->size - 1] != value)
 	{
-		printf("current value: %lld\n", stack->values[stack->size - 1]);
-		if (index > (stack->size / 2) - 1)
-			rotate((stack));
+		if (index > (stack->size - 1) / 2)
+			rotate(stack);
 		else
-			reverse_rotate((stack));
+			reverse_rotate	(stack);
 	}
 }
 
