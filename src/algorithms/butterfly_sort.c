@@ -54,6 +54,9 @@ static void push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 
 		push(&stacks->stack_b, &stacks->stack_a);
 
+		if (end == 1 && stacks->stack_a.values[stacks->stack_a.size - 1] > stacks->stack_a.values[stacks->stack_a.size - 2])
+			swap(&stacks->stack_a);
+
 		if (stacks->stack_b.values[stacks->stack_b.size - 1] <= (long long) midpoint)
 			rotate(&stacks->stack_b);
 	}
