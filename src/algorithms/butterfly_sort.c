@@ -85,7 +85,7 @@ static void finish(struct s_stacks *stacks)
 	}
 }
 
-void butterfly(struct s_stacks *stacks)
+void butterfly_sort(struct s_stacks *stacks)
 {
 	if (stacks->stack_a.size <= 100)
 		push_chunks(stacks, 5);

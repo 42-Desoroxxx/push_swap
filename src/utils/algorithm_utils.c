@@ -12,7 +12,7 @@
 
 #include <push_swap.h>
 
-void	bring_to_top(const struct s_stack *stack, const long long value)
+void	bring_to_top(struct s_stack *stack, const long long value)
 {
 	size_t index;
 
@@ -24,4 +24,18 @@ void	bring_to_top(const struct s_stack *stack, const long long value)
 		else
 			reverse_rotate((stack));
 	}
+}
+
+bool is_sorted(const struct s_stack *stack)
+{
+	size_t i;
+
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		if (stack->values[i] < stack->values[i + 1])
+			return false;
+		i++;
+	}
+	return true;
 }

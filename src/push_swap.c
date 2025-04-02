@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	struct s_stacks stacks;
 
@@ -23,7 +23,10 @@ int	main(int argc, char *argv[])
 	}
 	stacks = init_stacks(argc - 1, argv++);
 	ft_printf("meow_sort\n");
-	butterfly(&stacks);
+	if (stacks.stack_a.size <= 5)
+		meow_sort(&stacks);
+	else
+		butterfly_sort(&stacks);
 	free_stacks(&stacks);
 	print_ops();
 }
