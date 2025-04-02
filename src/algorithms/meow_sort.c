@@ -12,18 +12,26 @@
 
 #include <push_swap.h>
 
-void meow_sort(struct s_stacks *stacks)
+void three_sort(struct s_stacks *stacks)
 {
-	ft_printf("size - 1 = %d\n", stacks->stack_a.size - 1);
-	ft_printf("size - 2 = %d\n", stacks->stack_a.size - 2);
-	rotate(&stacks->stack_a);
-	ft_printf("size - 1 = %d\n", stacks->stack_a.size - 1);
-	ft_printf("size - 2 = %d\n", stacks->stack_a.size - 2);
-	exit(0);
-	while (!is_sorted(&stacks->stack_a))
+	const long long top = stacks->stack_a.values[stacks->stack_a.size - 1];
+	const long long middle = stacks->stack_a.values[stacks->stack_a.size - 2];
+	const long long bottom = stacks->stack_a.values[stacks->stack_a.size - 3];
+
+	if (top > middle && middle > bottom)
 	{
 		rotate(&stacks->stack_a);
-		if (stacks->stack_a.values[stacks->stack_a.size - 1] > stacks->stack_a.values[stacks->stack_a.size - 2])
-			swap(&stacks->stack_a);
+		swap(&stacks->stack_a);
+	}
+	else if (top > middle && top > bottom && middle < bottom)
+		rotate(&stacks->stack_a);
+	else if (top < middle && top > bottom)
+		reverse_rotate(&stacks->stack_a);
+	else if (top > middle && middle < bottom)
+		swap(&stacks->stack_a);
+	else if (top < bottom && middle > bottom)
+	{
+		reverse_rotate(&stacks->stack_a);
+		swap(&stacks->stack_a);
 	}
 }
