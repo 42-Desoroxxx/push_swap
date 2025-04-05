@@ -6,7 +6,7 @@
 /*   By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 08:55:32 by llage             #+#    #+#             */
-/*   Updated: 2025/03/19 01:03:53 by llage            ###   ########.fr       */
+/*   Updated: 2025/04/06 01:53:51 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void			meow_sort(struct s_stacks *stacks);
 void			butterfly_sort(struct s_stacks *stacks);
 
 // Utils
+
+bool			has_spaces(char *argv[]);
 
 void			bring_to_top(struct s_stack *stack, const long long value);
 bool			is_sorted(const struct s_stack *stack);

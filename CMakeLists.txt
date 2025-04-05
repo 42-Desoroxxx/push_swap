@@ -17,6 +17,7 @@ set(SOURCES
 	src/algorithms/three_sort.c
 	src/algorithms/meow_sort.c
 	src/algorithms/butterfly_sort.c
+	src/utils/parse_utils.c
 	)
 
 add_executable(push_swap ${SOURCES})
