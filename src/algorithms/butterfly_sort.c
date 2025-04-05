@@ -12,7 +12,6 @@
 
 #include <push_swap.h>
 
-// TODO: early returns (this kinda sucks)
 static long long find_next(const struct s_stack *stack, size_t start, const size_t end)
 {
 	size_t i;
@@ -20,10 +19,7 @@ static long long find_next(const struct s_stack *stack, size_t start, const size
 	size_t nextFromBottom;
 	bool foundOne;
 
-	nextFromTop = 0;
-	nextFromBottom = 0;
-	foundOne = false;
-	i = 0;
+	foundOne = nextFromTop = nextFromBottom = i = 0;
 	while (i < stack->size)
 	{
 		if (stack->values[i] >= (long long) start && stack->values[i] <= (long long) end)
@@ -51,9 +47,7 @@ static void push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 	while (find_next(&stacks->stack_a, start, end) != -1)
 	{
 		bring_to_top(&stacks->stack_a, find_next(&stacks->stack_a, start, end));
-
 		push(&stacks->stack_b, &stacks->stack_a);
-
 		if (stacks->stack_b.values[stacks->stack_b.size - 1] <= (long long) midpoint)
 			rotate(&stacks->stack_b);
 	}

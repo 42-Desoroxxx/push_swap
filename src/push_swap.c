@@ -34,5 +34,4 @@ int main(int argc, char *argv[])
 			butterfly_sort(&stacks);
 	}
 	free_stacks(&stacks);
-	print_ops();
 }

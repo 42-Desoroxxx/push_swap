@@ -12,19 +12,10 @@
 
 #include <push_swap.h>
 
-// ! TODO: Changed for convenience in testing
-static int operation_counter = 0;
-
 void	print_operation(const char stack_name, char *operation)
 {
 	if (stack_name == 0)
 		ft_printf("%s\n", operation);
 	else
 		ft_printf("%s%c\n", operation, stack_name);
-	operation_counter++;
-}
-
-void print_ops()
-{
-	ft_printf("Operations: %d\n", operation_counter);
 }

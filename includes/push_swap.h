@@ -39,8 +39,6 @@ void butterfly_sort(struct s_stacks *stacks);
 
 // Utils
 
-void print_ops();
-
 void	bring_to_top(struct s_stack *stack, const long long value);
 bool is_sorted(const struct s_stack *stack);
 
