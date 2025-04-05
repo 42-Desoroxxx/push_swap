@@ -19,32 +19,32 @@
 
 typedef struct s_stack
 {
-	char		name;
-	size_t		capacity;
-	size_t		size;
-	long long	*values;
-}	t_stack;
+	char       name;
+	size_t     capacity;
+	size_t     size;
+	long long *values;
+} t_stack;
 
 typedef struct s_stacks
 {
-	t_stack	stack_a;
-	t_stack	stack_b;
-}	t_stacks;
+	t_stack stack_a;
+	t_stack stack_b;
+} t_stacks;
 
 // Algorithms
 
-void three_sort(struct s_stacks *stacks);
-void meow_sort(struct s_stacks *stacks);
-void butterfly_sort(struct s_stacks *stacks);
+void	three_sort(struct s_stacks *stacks);
+void	meow_sort(struct s_stacks *stacks);
+void	butterfly_sort(struct s_stacks *stacks);
 
 // Utils
 
 void	bring_to_top(struct s_stack *stack, const long long value);
 bool is_sorted(const struct s_stack *stack);
 
-struct s_stacks init_stacks(const size_t capacity, char *argv[]);
-void free_stacks(const struct s_stacks *stacks);
-size_t get_index(const struct s_stack *stack, const int value);
+struct s_stacks	init_stacks(const size_t capacity, char *argv[]);
+void	free_stacks(const struct s_stacks *stacks);
+size_t	get_index(const struct s_stack *stack, const int value);
 
 // Operations
 
