@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	struct s_stacks stacks;
+	struct s_stacks	stacks;
 
 	if (argc < 2)
 	{

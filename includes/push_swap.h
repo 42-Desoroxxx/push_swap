@@ -40,7 +40,7 @@ void			butterfly_sort(struct s_stacks *stacks);
 // Utils
 
 void			bring_to_top(struct s_stack *stack, const long long value);
-bool 			is_sorted(const struct s_stack *stack);
+bool			is_sorted(const struct s_stack *stack);
 
 struct s_stacks	init_stacks(const size_t capacity, char *argv[]);
 void			free_stacks(const struct s_stacks *stacks);

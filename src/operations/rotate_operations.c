@@ -12,13 +12,13 @@
 
 #include <push_swap.h>
 
-static void internal_rotate(const struct s_stack *stack, const bool reverse)
+static void	internal_rotate(const struct s_stack *stack, const bool reverse)
 {
 	size_t	i;
 	int		temp;
 
 	if (stack->size <= 1)
-		return;
+		return ;
 	if (reverse)
 	{
 		temp = stack->values[0];
