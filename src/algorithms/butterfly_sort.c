@@ -42,7 +42,7 @@ static long long	find_next(const struct s_stack *stack, size_t start,
 
 static void	push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 {
-	const size_t midpoint = (end + start) / 2;
+	const size_t	midpoint = (end + start) / 2;
 
 	while (find_next(&stacks->stack_a, start, end) != -1)
 	{
@@ -57,9 +57,9 @@ static void	push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 
 static void	push_chunks(struct s_stacks *stacks, const size_t chunk_number)
 {
-	size_t chunk_size = stacks->stack_a.size / chunk_number;
-	size_t remainder = stacks->stack_a.size % chunk_number;
-	size_t i;
+	const size_t	chunk_size = stacks->stack_a.size / chunk_number;
+	const size_t	remainder = stacks->stack_a.size % chunk_number;
+	size_t			i;
 
 	i = 0;
 	while (i < chunk_number)
@@ -67,7 +67,8 @@ static void	push_chunks(struct s_stacks *stacks, const size_t chunk_number)
 		if (i == chunk_number - 1 || remainder == 0)
 			push_chunk(stacks, i * chunk_size, (i * chunk_size) + chunk_size);
 		else
-			push_chunk(stacks, i * chunk_size, (i * chunk_size) + chunk_size + remainder);
+			push_chunk(stacks, i * chunk_size,
+				(i * chunk_size) + chunk_size + remainder);
 		i++;
 	}
 }

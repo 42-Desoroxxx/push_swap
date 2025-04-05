@@ -14,8 +14,8 @@
 
 static void internal_rotate(const struct s_stack *stack, const bool reverse)
 {
-	size_t i;
-	int    temp;
+	size_t	i;
+	int		temp;
 
 	if (stack->size <= 1)
 		return;
@@ -37,30 +37,30 @@ static void internal_rotate(const struct s_stack *stack, const bool reverse)
 	}
 }
 
-void rotate(const struct s_stack *stack)
+void	rotate(const struct s_stack *stack)
 {
 	internal_rotate(stack, false);
 	if (stack->size <= 1)
-		return;
+		return ;
 	print_operation(stack->name, "r");
 }
 
-void rotate_stacks(const struct s_stacks *stacks)
+void	rotate_stacks(const struct s_stacks *stacks)
 {
 	internal_rotate(&stacks->stack_a, false);
 	internal_rotate(&stacks->stack_b, false);
 	print_operation(0, "rr");
 }
 
-void reverse_rotate(const struct s_stack *stack)
+void	reverse_rotate(const struct s_stack *stack)
 {
 	internal_rotate(stack, true);
 	if (stack->size <= 1)
-		return;
+		return ;
 	print_operation(stack->name, "rr");
 }
 
-void reverse_rotate_stacks(const struct s_stacks *stacks)
+void	reverse_rotate_stacks(const struct s_stacks *stacks)
 {
 	internal_rotate(&stacks->stack_a, true);
 	internal_rotate(&stacks->stack_b, true);
