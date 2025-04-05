@@ -104,7 +104,7 @@ void	free_stacks(const struct s_stacks *stacks)
 
 size_t	get_index(const struct s_stack *stack, const int value)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < stack->size)

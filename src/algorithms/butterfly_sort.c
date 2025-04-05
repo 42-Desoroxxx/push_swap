@@ -12,30 +12,32 @@
 
 #include <push_swap.h>
 
-static long long	find_next(const struct s_stack *stack, size_t start, const size_t end)
+static long long	find_next(const struct s_stack *stack, size_t start,
+	const size_t end)
 {
 	size_t		i;
-	size_t		nextFromTop;
-	long long	nextFromBottom;
+	size_t		next_from_top;
+	long long	next_from_bottom;
 
-	nextFromBottom = -1;
-	nextFromTop = 0;
+	next_from_bottom = -1;
+	next_from_top = 0;
 	i = 0;
 	while (i < stack->size)
 	{
-		if (stack->values[i] >= (long long) start && stack->values[i] <= (long long) end)
+		if (stack->values[i] >= (long long) start
+			&& stack->values[i] <= (long long) end)
 		{
-			nextFromTop = i;
-			if (nextFromBottom == -1)
-				nextFromBottom = i;
+			next_from_top = i;
+			if (next_from_bottom == -1)
+				next_from_bottom = i;
 		}
 		i++;
 	}
-	if (nextFromBottom == -1)
+	if (next_from_bottom == -1)
 		return (-1);
-	if ((stack->size - 1) - nextFromTop <= (size_t) nextFromBottom + 1)
-		return (stack->values[nextFromTop]);
-	return (stack->values[nextFromBottom]);
+	if ((stack->size - 1) - next_from_top <= (size_t) next_from_bottom + 1)
+		return (stack->values[next_from_top]);
+	return (stack->values[next_from_bottom]);
 }
 
 static void	push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
@@ -44,9 +46,11 @@ static void	push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 
 	while (find_next(&stacks->stack_a, start, end) != -1)
 	{
-		bring_to_top(&stacks->stack_a, find_next(&stacks->stack_a, start, end));
+		bring_to_top(&stacks->stack_a,
+			find_next(&stacks->stack_a, start, end));
 		push(&stacks->stack_b, &stacks->stack_a);
-		if (stacks->stack_b.values[stacks->stack_b.size - 1] <= (long long) midpoint)
+		if (stacks->stack_b.values[stacks->stack_b.size - 1]
+			<= (long long) midpoint)
 			rotate(&stacks->stack_b);
 	}
 }
