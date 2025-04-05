@@ -12,11 +12,11 @@
 
 #include <push_swap.h>
 
-void three_sort(struct s_stacks *stacks)
+void	three_sort(struct s_stacks *stacks)
 {
-	const long long top = stacks->stack_a.values[stacks->stack_a.size - 1];
-	const long long middle = stacks->stack_a.values[stacks->stack_a.size - 2];
-	const long long bottom = stacks->stack_a.values[stacks->stack_a.size - 3];
+	const long long	top = stacks->stack_a.values[stacks->stack_a.size - 1];
+	const long long	middle = stacks->stack_a.values[stacks->stack_a.size - 2];
+	const long long	bottom = stacks->stack_a.values[stacks->stack_a.size - 3];
 
 	if (top > middle && middle > bottom)
 	{

@@ -12,35 +12,33 @@
 
 #include <push_swap.h>
 
-static long long find_next(const struct s_stack *stack, size_t start, const size_t end)
+static long long	find_next(const struct s_stack *stack, size_t start, const size_t end)
 {
-	size_t i;
-	size_t nextFromTop;
-	size_t nextFromBottom;
-	bool foundOne;
+	size_t		i;
+	size_t		nextFromTop;
+	long long	nextFromBottom;
 
-	foundOne = nextFromTop = nextFromBottom = i = 0;
+	nextFromBottom = -1;
+	nextFromTop = 0;
+	i = 0;
 	while (i < stack->size)
 	{
 		if (stack->values[i] >= (long long) start && stack->values[i] <= (long long) end)
 		{
 			nextFromTop = i;
-			if (!foundOne)
-			{
+			if (nextFromBottom == -1)
 				nextFromBottom = i;
-				foundOne = true;
-			}
 		}
 		i++;
 	}
-	if (!foundOne)
+	if (nextFromBottom == -1)
 		return (-1);
-	if ((stack->size - 1) - nextFromTop <= nextFromBottom + 1)
+	if ((stack->size - 1) - nextFromTop <= (size_t) nextFromBottom + 1)
 		return (stack->values[nextFromTop]);
 	return (stack->values[nextFromBottom]);
 }
 
-static void push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
+static void	push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 {
 	const size_t midpoint = (end + start) / 2;
 
@@ -53,7 +51,7 @@ static void push_chunk(struct s_stacks *stacks, size_t start, const size_t end)
 	}
 }
 
-static void push_chunks(struct s_stacks *stacks, const size_t chunk_number)
+static void	push_chunks(struct s_stacks *stacks, const size_t chunk_number)
 {
 	size_t chunk_size = stacks->stack_a.size / chunk_number;
 	size_t remainder = stacks->stack_a.size % chunk_number;
@@ -70,7 +68,7 @@ static void push_chunks(struct s_stacks *stacks, const size_t chunk_number)
 	}
 }
 
-static void finish(struct s_stacks *stacks)
+static void	finish(struct s_stacks *stacks)
 {
 	while (stacks->stack_b.size > 0)
 	{
@@ -79,7 +77,7 @@ static void finish(struct s_stacks *stacks)
 	}
 }
 
-void butterfly_sort(struct s_stacks *stacks)
+void	butterfly_sort(struct s_stacks *stacks)
 {
 	if (stacks->stack_a.size <= 100)
 		push_chunks(stacks, 5);

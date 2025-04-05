@@ -12,9 +12,9 @@
 
 #include <push_swap.h>
 
-void meow_sort(struct s_stacks *stacks)
+void	meow_sort(struct s_stacks *stacks)
 {
-	bring_to_top(&stacks->stack_a,0);
+	bring_to_top(&stacks->stack_a, 0);
 	push(&stacks->stack_b, &stacks->stack_a);
 	if (stacks->stack_a.size == 5)
 	{
