@@ -12,12 +12,11 @@
 
 #include "push_swap.h"
 
-static void	normalize_stack(const struct s_stack *stack)
+static void	normalize_stack(const struct s_stack *stack, long long *temp)
 {
-	int		temp[stack->size];
-	int		rank;
-	size_t	i;
-	size_t	j;
+	int			rank;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	while (i < stack->size)
@@ -44,15 +43,16 @@ static void	normalize_stack(const struct s_stack *stack)
 static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 						char *argv[], const bool one_arg)
 {
-	char	**temp;
+	char		**temp;
+	long long	*normal_temp;
 
 	if (one_arg)
 	{
 		temp = ft_split(argv[1], ' ');
 		while (capacity)
 		{
-			stacks->stack_a.values[stacks->stack_a.size++] =
-				ft_atoi(temp[capacity - 1]);
+			stacks->stack_a.values[stacks->stack_a.size++]
+			= ft_atoi(temp[capacity - 1]);
 			capacity--;
 		}
 		free(temp);
@@ -60,10 +60,14 @@ static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 	else
 	{
 		while (capacity)
-			stacks->stack_a.values[stacks->stack_a.size++] =
-				ft_atoi(argv[capacity--]);
+			stacks->stack_a.values[stacks->stack_a.size++]
+			= ft_atoi(argv[capacity--]);
 	}
-	normalize_stack(&stacks->stack_a);
+	normal_temp = ft_calloc(capacity, sizeof(long long));
+	if (normal_temp == NULL)
+		return ;
+	normalize_stack(&stacks->stack_a, normal_temp);
+	free(normal_temp);
 }
 
 struct s_stacks	init_stacks(size_t capacity, char *argv[])
