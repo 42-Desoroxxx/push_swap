@@ -1,0 +1,39 @@
+name: Vogsphere
+
+on:
+  push:
+    branches:
+      - main
+    workflow_dispatch:
+
+jobs:
+  duplicate_&_clean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: main
+
+      - name: Create vogsphere branch
+        run: |
+          git switch -c vogsphere
+          
+      - name: Censor for vogsphere
+        run: |
+          find . -name 'CMakeLists.txt' -type f -delete
+          find . -name '.gitignore' -type f -delete
+          find . -name 'README.md' -type f -delete
+          find . -name 'LICENSE' -type f -delete
+          find . -name '.github' -type d -exec rm -rf {} +
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Censor for vogsphere"
+
+      - name: Push to vogsphere branch
+        run: |
+          git push origin vogsphere --force
