@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <push_swap.h>
-#include <stdio.h>
 
 void	bring_to_top(struct s_stack *stack, const long long value)
 {

@@ -14,9 +14,9 @@
 
 static void	print_usage(char *argv[])
 {
-	ft_printf("Usage: %s <value 0> <value 1> ...\n", argv[0]);
-	ft_printf("or Usage: %s <\"value0 value1 ...\">\n", argv[0]);
-	ft_printf("with NO duplicate values\n");
+	ft_printf("Usage: %s <value 0> <value 1> ...\n", argv[0]);// TODO: sortie d erreur
+	ft_printf("or Usage: %s <\"value0 value1 ...\">\n", argv[0]);// TODO: sortie d erreur
+	ft_printf("with NO duplicate values\n");// TODO: sortie d erreur
 	exit(EXIT_FAILURE);
 }
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 	stacks = init_stacks(argc - 1, argv);
 	if (contains_duplicates(&stacks.stack_a))
 	{
-		ft_printf("Error: Stack contains duplicate values\n");
+		ft_printf("Error: Stack contains duplicate values\n"); // TODO: sortie d erreur
 		free_stacks(&stacks);
 		print_usage(argv);
 	}

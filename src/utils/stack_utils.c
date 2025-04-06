@@ -61,7 +61,7 @@ static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 	{
 		while (capacity)
 			stacks->stack_a.values[stacks->stack_a.size++]
-				= ft_atoi(argv[capacity--]);
+				= ft_atoi(argv[capacity--]); //TODO: proteger
 	}
 	normal_temp = ft_calloc(stacks->stack_a.capacity, sizeof(long long));
 	if (normal_temp == NULL)
