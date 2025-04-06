@@ -37,7 +37,7 @@ bool	contains_duplicates(const struct s_stack *stack)
 		j = 0;
 		while (j < stack->size)
 		{
-			if (stack->values[i] == stack->values[j])
+			if (i != j && stack->values[i] == stack->values[j])
 				return (true);
 			j++;
 		}

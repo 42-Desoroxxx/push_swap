@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2 || (argc > 2 && has_spaces(argv)))
 		print_usage(argv);
-	stacks = init_stacks(argc - 1, argv++);
+	stacks = init_stacks(argc - 1, argv + 1);
 	if (contains_duplicates(&stacks.stack_a))
 	{
 		ft_printf("Error: Stack contains duplicate values\n");
