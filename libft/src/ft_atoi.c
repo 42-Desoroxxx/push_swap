@@ -17,6 +17,7 @@ static const char	*skip_whitespace(const char *str)
 	return (str);
 }
 
+// TODO: not overflow safe use an long long int64_t
 int	ft_atoi(const char *nptr)
 {
 	int	result;

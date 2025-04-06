@@ -52,7 +52,7 @@ static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 		while (capacity)
 		{
 			stacks->stack_a.values[stacks->stack_a.size++]
-				= ft_atoi(temp[capacity - 1]);
+				= ft_atoi(temp[capacity - 1]); // TODO: Check for INT_MIN and INT_MAX
 			capacity--;
 		}
 		free(temp);
@@ -61,7 +61,7 @@ static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 	{
 		while (capacity)
 			stacks->stack_a.values[stacks->stack_a.size++]
-				= ft_atoi(argv[capacity--]); //TODO: proteger
+				= ft_atoi(argv[capacity--]); // TODO: Check for INT_MIN and INT_MAX
 	}
 	normal_temp = ft_calloc(stacks->stack_a.capacity, sizeof(long long));
 	if (normal_temp == NULL)
