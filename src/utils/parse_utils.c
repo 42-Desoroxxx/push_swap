@@ -29,12 +29,18 @@ bool	has_spaces(char *argv[])
 bool	contains_duplicates(const struct s_stack *stack)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (i < stack->size)
 	{
-		if (stack->values[i] == stack->values[i + 1])
-			return (true);
+		j = 0;
+		while (j < stack->size)
+		{
+			if (stack->values[i] == stack->values[j])
+				return (true);
+			j++;
+		}
 		i++;
 	}
 	return (false);
