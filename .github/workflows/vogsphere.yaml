@@ -13,4 +13,4 @@ jobs:
       contents: write
     steps:
       - name: Vogsphere Composite
-        uses: 42-Desoroxxx/Vogsphere@main
+        uses: 42-Desoroxxx/Vogsphere-Composite@main
