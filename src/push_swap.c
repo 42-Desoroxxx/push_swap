@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	print_usage(const char *argv[])
+static void	print_usage(char *argv[])
 {
 	ft_printf("Usage: %s <value 0> <value 1> ...\n", argv[0]);
 	ft_printf("Usage: %s <\"value0 value1 ...\">\n", argv[0]);
