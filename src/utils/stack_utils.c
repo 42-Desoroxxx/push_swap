@@ -63,7 +63,7 @@ static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 			stacks->stack_a.values[stacks->stack_a.size++]
 				= ft_atoi(argv[capacity--]);
 	}
-	normal_temp = ft_calloc(capacity, sizeof(long long));
+	normal_temp = ft_calloc(stacks->stack_a.capacity, sizeof(long long));
 	if (normal_temp == NULL)
 		return ;
 	normalize_stack(&stacks->stack_a, normal_temp);
