@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 static size_t	int_length(int n)
 {
@@ -30,7 +30,7 @@ static size_t	int_length(int n)
 	return (length);
 }
 
-static void	ft_o_itoa(int n, size_t length, char *result)
+static void	itoa(int n, size_t length, char *result)
 {
 	if (n < 0)
 	{
@@ -57,6 +57,6 @@ char	*ft_itoa(int n)
 	result = ft_calloc(length + 1, sizeof(char));
 	if (result == NULL)
 		return (NULL);
-	ft_o_itoa(n, length - 1, result);
+	itoa(n, length - 1, result);
 	return (result);
 }

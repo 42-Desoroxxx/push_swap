@@ -24,4 +24,4 @@ add_executable(push_swap ${SOURCES})
 
 target_include_directories(push_swap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/includes)
 
-target_link_libraries(push_swap PRIVATE libft)
+target_link_libraries(push_swap PRIVATE Libft)
