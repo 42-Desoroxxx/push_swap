@@ -4,7 +4,7 @@ project(push_swap C)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Ofast -march=native -flto")
 
-add_subdirectory(libft)
+add_subdirectory(Libft)
 
 set(SOURCES
 	src/push_swap.c

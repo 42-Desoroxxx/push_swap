@@ -39,6 +39,7 @@ void			butterfly_sort(struct s_stacks *stacks);
 
 // Utils
 
+bool			are_chars_valid(char *argv[]);
 bool			has_spaces(char *argv[]);
 bool			contains_duplicates(const struct s_stack *stack);
 

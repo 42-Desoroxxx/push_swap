@@ -10,18 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static const char	*skip_whitespace(const char *str)
+#include <limits.h>
+
+static const char *skip_whitespace(const char *nptr)
 {
-	while ((*str >= '\t' && *str <= '\r' ) || *str == ' ')
-		str++;
-	return (str);
+	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
+		nptr++;
+	return nptr;
 }
 
-// ! TODO: wtf this doesn't account for overflow INT_MAX & INT_MIN
-int	ft_atoi(const char *nptr)
+int ft_atoi(const char *nptr)
 {
-	int	result;
-	int	sign;
+	long long result;
+	int sign;
 
 	nptr = skip_whitespace(nptr);
 	sign = 1;
@@ -32,9 +33,12 @@ int	ft_atoi(const char *nptr)
 	result = 0;
 	while (*nptr >= '0' && *nptr <= '9')
 	{
-		result *= 10;
-		result += *nptr - '0';
+		if ((sign == 1 && (result > (INT_MAX - (*nptr - '0')) / 10)) ||
+			(sign == -1 && (result > ((long)INT_MIN * -1 - (*nptr - '0')) / 10)))
+			return (sign == 1) ? INT_MAX : INT_MIN;
+		result = result * 10 + (*nptr - '0');
 		nptr++;
 	}
-	return (result * sign);
+
+	return (int)(result * sign);
 }
