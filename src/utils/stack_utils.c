@@ -64,16 +64,16 @@ static bool	fill_stacks(struct s_stacks *stacks, size_t capacity,
 				= ft_atol(argv[capacity--]);
 	}
 	if (contains_out_of_range_values(&stacks->stack_a))
-		return false;
+		return (false);
 	normal_temp = ft_calloc(stacks->stack_a.capacity, sizeof(long long));
 	if (normal_temp == NULL)
-		return false;
+		return (false);
 	normalize_stack(&stacks->stack_a, normal_temp);
 	free(normal_temp);
-	return true;
+	return (true);
 }
 
-struct s_stacks init_stacks(size_t capacity, char *argv[])
+struct s_stacks	init_stacks(size_t capacity, char *argv[])
 {
 	const bool		one_arg = capacity == 1;
 	struct s_stacks	stacks;
