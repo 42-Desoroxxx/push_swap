@@ -13,10 +13,10 @@
 #include <push_swap.h>
 #include <limits.h>
 
-bool are_chars_valid(char *argv[])
+bool	are_chars_valid(char *argv[])
 {
-	size_t  i;
-	size_t  j;
+	size_t	i;
+	size_t	j;
 
 	i = 1;
 	while (argv[i])
@@ -36,8 +36,6 @@ bool are_chars_valid(char *argv[])
 	}
 	return (true);
 }
-
-
 
 bool	has_spaces(char *argv[])
 {

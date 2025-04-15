@@ -12,17 +12,17 @@
 
 #include <limits.h>
 
-static const char *skip_whitespace(const char *nptr)
+static const char	*skip_whitespace(const char *nptr)
 {
 	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
 		nptr++;
-	return nptr;
+	return (nptr);
 }
 
-long ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	long long result;
-	int sign;
+	long long	result;
+	int			sign;
 
 	nptr = skip_whitespace(nptr);
 	sign = 1;
@@ -33,12 +33,15 @@ long ft_atol(const char *nptr)
 	result = 0;
 	while (*nptr >= '0' && *nptr <= '9')
 	{
-		if ((sign == 1 && (result > (LONG_MAX - (*nptr - '0')) / 10)) ||
-			(sign == -1 && (-result < (LONG_MIN + (*nptr - '0')) / 10)))
-			return (sign == 1) ? LONG_MAX : LONG_MIN;
+		if ((sign == 1 && (result > (LONG_MAX - (*nptr - '0')) / 10))
+			||(sign == -1 && (-result < (LONG_MIN + (*nptr - '0')) / 10)))
+		{
+			if (sign == 1)
+				return (LONG_MAX);
+			return (LONG_MIN);
+		}
 		result = result * 10 + (*nptr - '0');
 		nptr++;
 	}
-
-	return (long)(result * sign);
+	return (result * sign);
 }

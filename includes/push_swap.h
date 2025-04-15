@@ -39,7 +39,7 @@ void			butterfly_sort(struct s_stacks *stacks);
 
 // Utils
 
-void			print_usage_then_exit(char *argv[]);
+_Noreturn void	print_usage_then_exit(char *argv[]);
 
 bool			are_chars_valid(char *argv[]);
 bool			has_spaces(char *argv[]);
@@ -49,7 +49,7 @@ bool			contains_out_of_range_values(const struct s_stack *stack);
 void			bring_to_top(struct s_stack *stack, const long long value);
 bool			is_sorted(const struct s_stack *stack);
 
-struct s_stacks init_stacks(const size_t capacity, char *argv[]);
+struct s_stacks	init_stacks(const size_t capacity, char *argv[]);
 void			free_stacks(const struct s_stacks *stacks);
 size_t			get_index(const struct s_stack *stack, const int value);
 
