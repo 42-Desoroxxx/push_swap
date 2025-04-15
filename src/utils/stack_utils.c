@@ -40,7 +40,7 @@ static void	normalize_stack(const struct s_stack *stack, long long *temp)
 	}
 }
 
-static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
+static bool	fill_stacks(struct s_stacks *stacks, size_t capacity,
 						char *argv[], const bool one_arg)
 {
 	char		**temp;
@@ -52,7 +52,7 @@ static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 		while (capacity)
 		{
 			stacks->stack_a.values[stacks->stack_a.size++]
-				= ft_atoi(temp[capacity - 1]); // TODO: Check for INT_MIN and INT_MAX
+				= ft_atol(temp[capacity - 1]);
 			capacity--;
 		}
 		free(temp);
@@ -61,16 +61,19 @@ static void	fill_stacks(struct s_stacks *stacks, size_t capacity,
 	{
 		while (capacity)
 			stacks->stack_a.values[stacks->stack_a.size++]
-				= ft_atoi(argv[capacity--]); // TODO: Check for INT_MIN and INT_MAX
+				= ft_atol(argv[capacity--]);
 	}
+	if (contains_out_of_range_values(&stacks->stack_a))
+		return false;
 	normal_temp = ft_calloc(stacks->stack_a.capacity, sizeof(long long));
 	if (normal_temp == NULL)
-		return ;
+		return false;
 	normalize_stack(&stacks->stack_a, normal_temp);
 	free(normal_temp);
+	return true;
 }
 
-struct s_stacks	init_stacks(size_t capacity, char *argv[])
+struct s_stacks init_stacks(size_t capacity, char *argv[])
 {
 	const bool		one_arg = capacity == 1;
 	struct s_stacks	stacks;
@@ -92,8 +95,12 @@ struct s_stacks	init_stacks(size_t capacity, char *argv[])
 	stacks.stack_b.capacity = capacity;
 	stacks.stack_b.size = 0;
 	stacks.stack_b.values = ft_calloc(capacity, sizeof(long long));
-	fill_stacks(&stacks, capacity, argv, one_arg);
-	return (stacks);
+	if (fill_stacks(&stacks, capacity, argv, one_arg))
+		return (stacks);
+	free_stacks(&stacks);
+	ft_fprintf(STDERR_FILENO, "ERROR: Stack contains out of range values\n");
+	print_usage_then_exit(argv);
+	exit(EXIT_FAILURE);
 }
 
 void	free_stacks(const struct s_stacks *stacks)

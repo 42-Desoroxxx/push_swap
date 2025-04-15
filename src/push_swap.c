@@ -12,26 +12,18 @@
 
 #include <push_swap.h>
 
-static void	print_usage(char *argv[])
-{
-	ft_fprintf(STDERR_FILENO, "Usage: %s <value 0> <value 1> ...\n", argv[0]);
-	ft_fprintf(STDERR_FILENO, "or Usage: %s <\"value0 value1 ...\">\n", argv[0]);
-	ft_fprintf(STDERR_FILENO, "with NO duplicate and only digits that ma be prefixed with + or -\n");
-	exit(EXIT_FAILURE);
-}
-
 int	main(int argc, char *argv[])
 {
 	struct s_stacks	stacks;
 
 	if (argc < 2 || (argc > 2 && has_spaces(argv) && !are_chars_valid(argv)))
-		print_usage(argv);
+		print_usage_then_exit(argv);
 	stacks = init_stacks(argc - 1, argv);
 	if (contains_duplicates(&stacks.stack_a))
 	{
-		ft_fprintf(STDERR_FILENO, "Error: Stack contains duplicate values\n");
+		ft_fprintf(STDERR_FILENO, "ERROR: Stack contains duplicate values\n");
 		free_stacks(&stacks);
-		print_usage(argv);
+		print_usage_then_exit(argv);
 	}
 	if (!is_sorted(&stacks.stack_a) && stacks.stack_a.size > 1)
 	{

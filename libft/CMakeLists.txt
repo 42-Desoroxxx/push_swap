@@ -6,6 +6,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Ofast -march=native -
 
 set(SOURCE_FILES
 	src/ft_atoi.c
+	src/ft_atol.c
 	src/ft_bzero.c
 	src/ft_calloc.c
 	src/ft_calloc.c

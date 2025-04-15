@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include <push_swap.h>
+#include <limits.h>
 
-bool    are_chars_valid(char *argv[])
+bool are_chars_valid(char *argv[])
 {
 	size_t  i;
 	size_t  j;
@@ -67,6 +68,20 @@ bool	contains_duplicates(const struct s_stack *stack)
 				return (true);
 			j++;
 		}
+		i++;
+	}
+	return (false);
+}
+
+bool	contains_out_of_range_values(const struct s_stack *stack)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->values[i] < INT_MIN || stack->values[i] > INT_MAX)
+			return (true);
 		i++;
 	}
 	return (false);
