@@ -50,11 +50,8 @@ static bool	fill_stacks(struct s_stacks *stacks, size_t capacity,
 	{
 		temp = ft_split(argv[1], ' ');
 		while (capacity)
-		{
 			stacks->stack_a.values[stacks->stack_a.size++]
-				= ft_atol(temp[capacity - 1]);
-			capacity--;
-		}
+				= ft_atol(temp[--capacity]);
 		free(temp);
 	}
 	else

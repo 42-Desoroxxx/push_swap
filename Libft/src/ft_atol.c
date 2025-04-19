@@ -34,7 +34,7 @@ long	ft_atol(const char *nptr)
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		if ((sign == 1 && (result > (LONG_MAX - (*nptr - '0')) / 10))
-				||(sign == -1 && (-result < (LONG_MIN + (*nptr - '0')) / 10)))
+			|| (sign == -1 && (-result < (LONG_MIN + (*nptr - '0')) / 10)))
 		{
 			if (sign == 1)
 				return (LONG_MAX);
