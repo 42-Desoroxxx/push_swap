@@ -64,7 +64,7 @@ static void	push_chunks(struct s_stacks *stacks, const size_t chunk_number)
 	i = 0;
 	while (i < chunk_number)
 	{
-		if (i == chunk_number - 1 || remainder == 0)
+		if (i != chunk_number - 1 || remainder == 0)
 			push_chunk(stacks, i * chunk_size, (i * chunk_size) + chunk_size);
 		else
 			push_chunk(stacks, i * chunk_size,
