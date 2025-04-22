@@ -10,16 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all bonus clean fclean re fast refast
+.PHONY: all clean fclean re bonus
 
 GREEN = \033[1;32m
 BLUE = \033[1;34m
 RED = \033[1;31m
-BLACK = \033[1;30m
 RESET = \033[0m
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3 -ffast-math -march=native -flto
 NAME = push_swap
 DEPS = includes
 SRC = src
@@ -48,8 +47,6 @@ $(NAME): $(OBJS) libft/libft.a
 	@$(CC) $(CFLAGS) $^ -o $@
 	@echo "$(GREEN)Done!$(RESET)"
 
-bonus: all
-
 clean:
 	@echo "$(RED)Cleaning$(RESET) object files..."
 	@rm -rf $(OBJ)
@@ -62,3 +59,5 @@ fclean: clean
 
 re: fclean
 	@$(MAKE) --no-print-directory all
+
+bonus: all
