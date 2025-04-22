@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   s_memory.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+        */
+/*   By: llage <llage@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 12:53:37 by llage             #+#    #+#             */
-/*   Updated: 2024/10/19 12:53:44 by llage            ###   ########.fr       */
+/*   Created: 2025/04/12 10:45:19 by llage             #+#    #+#             */
+/*   Updated: 2025/04/12 10:45:28 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#ifndef S_MEMORY_H
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
-}
+# define S_MEMORY_H
+
+# include <libft.h>
+
+void	*s_alloc(size_t size, size_t num);
+void	s_free(void **ptr);
+
+#endif

@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_str_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+        */
+/*   By: llage <llage@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 12:58:19 by llage             #+#    #+#             */
-/*   Updated: 2024/10/19 12:58:50 by llage            ###   ########.fr       */
+/*   Created: 2025/04/22 10:48:08 by llage             #+#    #+#             */
+/*   Updated: 2025/04/22 10:48:08 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-
-void	ft_putendl_fd(char *s, int fd)
+const char	*skip_whitespace(const char *str)
 {
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+		str++;
+	return (str);
 }
