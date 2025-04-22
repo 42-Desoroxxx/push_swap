@@ -6,7 +6,7 @@
 #    By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 22:55:02 by llage             #+#    #+#              #
-#    Updated: 2025/04/22 06:21:22 by llage            ###   ########.fr        #
+#    Updated: 2025/04/22 06:35:42 by llage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,15 +35,15 @@ OBJS := $(patsubst $(SRC)/%,$(OBJ)/%,$(SRCS:.c=.o))
 
 all: $(NAME)
 
-Libft/Libft.a:
-	@$(MAKE) -s -C Libft
+libft/libft.a:
+	@$(MAKE) -s -C libft
 
 $(OBJ)/%.o: $(SRC)/%.c $(DEPS)
 	@mkdir -p $(@D)
 	@echo "$(BLUE)Compiling$(RESET) $<..."
-	@$(CC) $(CFLAGS) -I$(DEPS) -ILibft/includes -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(DEPS) -Ilibft/includes -c $< -o $@
 
-$(NAME): $(OBJS) Libft/Libft.a
+$(NAME): $(OBJS) libft/libft.a
 	@echo "$(GREEN)Linking$(RESET) $@..."
 	@$(CC) $(CFLAGS) $^ -o $@
 	@echo "$(GREEN)Done!$(RESET)"
@@ -53,12 +53,12 @@ bonus: all
 clean:
 	@echo "$(RED)Cleaning$(RESET) object files..."
 	@rm -rf $(OBJ)
-	@$(MAKE) -s -C Libft clean
+	@$(MAKE) -s -C libft clean
 
 fclean: clean
 	@echo "$(RED)Removing$(RESET) $(NAME)..."
 	@rm -f $(NAME)
-	@$(MAKE) -s -C Libft fclean
+	@$(MAKE) -s -C libft fclean
 
 re: fclean
 	@$(MAKE) --no-print-directory all

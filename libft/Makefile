@@ -6,7 +6,7 @@
 #    By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 22:55:02 by llage             #+#    #+#              #
-#    Updated: 2025/04/22 06:05:54 by llage            ###   ########.fr        #
+#    Updated: 2025/04/22 06:36:08 by llage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RESET = \033[0m
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = Libft.a
+NAME = libft.a
 AR = ar rcs
 
 DEPS = includes
