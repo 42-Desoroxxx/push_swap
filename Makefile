@@ -6,7 +6,7 @@
 #    By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 22:55:02 by llage             #+#    #+#              #
-#    Updated: 2025/02/05 05:46:22 by llage            ###   ########.fr        #
+#    Updated: 2025/04/22 06:21:22 by llage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ RESET = \033[0m
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-FASTFLAGS = -Ofast -march=native -flto
 NAME = push_swap
 DEPS = includes
 SRC = src
@@ -31,22 +30,22 @@ SRCS := src/push_swap.c src/operations/operations_printer.c \
 		src/operations/swap_operations.c src/utils/stack_utils.c \
 		src/utils/algorithm_utils.c src/algorithms/three_sort.c \
 		src/algorithms/meow_sort.c src/algorithms/butterfly_sort.c \
-		src/utils/parse_utils.c
+		src/utils/parse_utils.c src/utils/error_utils.c
 OBJS := $(patsubst $(SRC)/%,$(OBJ)/%,$(SRCS:.c=.o))
 
 all: $(NAME)
 
-libft/libft.a:
-	@$(MAKE) -s -C libft
+Libft/Libft.a:
+	@$(MAKE) -s -C Libft
 
 $(OBJ)/%.o: $(SRC)/%.c $(DEPS)
 	@mkdir -p $(@D)
 	@echo "$(BLUE)Compiling$(RESET) $<..."
-	@$(CC) $(CFLAGS) -I$(DEPS) -Ilibft/includes -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(DEPS) -ILibft/includes -c $< -o $@
 
-$(NAME): $(OBJS) libft/libft.a
+$(NAME): $(OBJS) Libft/Libft.a
 	@echo "$(GREEN)Linking$(RESET) $@..."
-	@$(CC) $(CFLAGS) $^ -o $@ -Llibft -lft
+	@$(CC) $(CFLAGS) $^ -o $@
 	@echo "$(GREEN)Done!$(RESET)"
 
 bonus: all
@@ -54,20 +53,12 @@ bonus: all
 clean:
 	@echo "$(RED)Cleaning$(RESET) object files..."
 	@rm -rf $(OBJ)
-	@$(MAKE) -s -C libft clean
+	@$(MAKE) -s -C Libft clean
 
 fclean: clean
 	@echo "$(RED)Removing$(RESET) $(NAME)..."
 	@rm -f $(NAME)
-	@$(MAKE) -s -C libft fclean
+	@$(MAKE) -s -C Libft fclean
 
 re: fclean
 	@$(MAKE) --no-print-directory all
-
-fast: CFLAGS += $(FASTFLAGS)
-fast:
-	@echo "$(BLACK)MAKING THE $(RED)ULTIMATE$(BLACK) APP FORM$(RESET)"
-	@$(MAKE) --no-print-directory CFLAGS="$(CFLAGS)"
-
-refast: fclean
-	@$(MAKE) fast --no-print-directory

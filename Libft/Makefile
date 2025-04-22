@@ -6,11 +6,11 @@
 #    By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 22:55:02 by llage             #+#    #+#              #
-#    Updated: 2025/04/07 19:36:50 by llage            ###   ########.fr        #
+#    Updated: 2025/04/22 06:05:54 by llage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
 
 GREEN = \033[1;32m
 BLUE = \033[1;34m
@@ -52,8 +52,6 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)Archiving$(RESET) $@..."
 	@$(AR) $@ $^
 	@echo "$(GREEN)Done!$(RESET)"
-
-bonus: all
 
 clean:
 	@echo "$(RED)Cleaning$(RESET) object files..."
