@@ -16,14 +16,15 @@ int	main(int argc, char *argv[])
 {
 	struct s_stacks	stacks;
 
-	if (argc < 2 || (argc > 2 && has_spaces(argv) && !are_chars_valid(argv)))
-		print_usage_then_exit(argv);
+	if (argc < 2)
+		exit(EXIT_SUCCESS);
+	if (argc > 2 && has_spaces(argv) && !are_chars_valid(argv))
+		fatal_error();
 	stacks = init_stacks(argc - 1, argv);
 	if (contains_duplicates(&stacks.stack_a))
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Stack contains duplicate values\n");
 		free_stacks(&stacks);
-		print_usage_then_exit(argv);
+		fatal_error();
 	}
 	if (!is_sorted(&stacks.stack_a) && stacks.stack_a.size > 1)
 	{

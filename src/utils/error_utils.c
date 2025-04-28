@@ -12,12 +12,8 @@
 
 #include <push_swap.h>
 
-_Noreturn void	print_usage_then_exit(char *argv[])
+_Noreturn void	fatal_error(void)
 {
-	ft_fprintf(STDERR_FILENO, "Usage: %s <int> <int> ...\n", argv[0]);
-	ft_fprintf(STDERR_FILENO, "or Usage: %s <\"int int ...\">\n", argv[0]);
-	ft_fprintf(STDERR_FILENO, "with NO duplicate and only digits that may be "
-		"prefixed with + or -\n");
-	ft_fprintf(STDERR_FILENO, "and every values must be in the int range\n");
+	ft_fprintf(STDERR_FILENO, "Error\n");
 	exit(EXIT_FAILURE);
 }

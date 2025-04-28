@@ -20,7 +20,7 @@ void	*s_alloc(size_t size, size_t num)
 	result = ft_calloc(num, size);
 	if (result == NULL)
 	{
-		ft_fprintf(STDERR_FILENO, "FATAL: Could not allocate memory\n");
+		ft_fprintf(STDERR_FILENO, "Error\n");
 		exit(EXIT_FAILURE);
 	}
 	return (result);

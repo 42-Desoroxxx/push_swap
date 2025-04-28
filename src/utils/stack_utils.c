@@ -95,8 +95,7 @@ struct s_stacks	init_stacks(size_t capacity, char *argv[])
 	if (fill_stacks(&stacks, capacity, argv, one_arg))
 		return (stacks);
 	free_stacks(&stacks);
-	ft_fprintf(STDERR_FILENO, "ERROR: Stack contains out of range values\n");
-	print_usage_then_exit(argv);
+	fatal_error();
 }
 
 void	free_stacks(const struct s_stacks *stacks)

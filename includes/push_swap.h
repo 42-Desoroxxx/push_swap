@@ -6,7 +6,7 @@
 /*   By: llage <desoroxxx@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 08:55:32 by llage             #+#    #+#             */
-/*   Updated: 2025/04/06 01:53:51 by llage            ###   ########.fr       */
+/*   Updated: 2025/04/28 13:59:24 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			butterfly_sort(struct s_stacks *stacks);
 
 // Utils
 
-_Noreturn void	print_usage_then_exit(char *argv[]);
+_Noreturn void	fatal_error(void);
 
 bool			are_chars_valid(char *argv[]);
 bool			has_spaces(char *argv[]);
