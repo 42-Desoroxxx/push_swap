@@ -16,7 +16,7 @@ void	meow_sort(struct s_stacks *stacks)
 {
 	bring_to_top(&stacks->stack_a, 0);
 	push(&stacks->stack_b, &stacks->stack_a);
-	if (stacks->stack_a.size == 5)
+	if (stacks->stack_a.capacity == 5)
 	{
 		bring_to_top(&stacks->stack_a, 1);
 		push(&stacks->stack_b, &stacks->stack_a);
