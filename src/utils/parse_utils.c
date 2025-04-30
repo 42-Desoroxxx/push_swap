@@ -22,13 +22,12 @@ bool	are_chars_valid(char *argv[])
 	while (argv[i])
 	{
 		j = 0;
-		if (argv[i][j] == '+' || argv[i][j] == '-')
-			j++;
 		if (!argv[i][j])
 			return (false);
 		while (argv[i][j])
 		{
-			if (!ft_isdigit(argv[i][j]) && argv[i][j] != ' ')
+			if (!ft_isdigit(argv[i][j]) && argv[i][j] != ' '
+					&& argv[i][j] != '+' && argv[i][j] != '-')
 				return (false);
 			j++;
 		}
