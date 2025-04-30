@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 		exit(EXIT_SUCCESS);
-	if (argc > 2 && has_spaces(argv) && !are_chars_valid(argv))
+	if ((has_spaces(argv) && argc > 2) || !are_chars_valid(argv))
 		fatal_error();
 	stacks = init_stacks(argc - 1, argv);
 	if (contains_duplicates(&stacks.stack_a))
