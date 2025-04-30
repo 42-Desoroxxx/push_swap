@@ -29,7 +29,7 @@ SRCS := src/push_swap.c src/operations/operations_printer.c \
 		src/operations/swap_operations.c src/utils/stack_utils.c \
 		src/utils/algorithm_utils.c src/algorithms/three_sort.c \
 		src/algorithms/meow_sort.c src/algorithms/butterfly_sort.c \
-		src/utils/parse_utils.c src/utils/error_utils.c
+		src/utils/parse_utils.c src/utils/error_utils.c src/utils/free_utils.c
 OBJS := $(patsubst $(SRC)/%,$(OBJ)/%,$(SRCS:.c=.o))
 
 all: $(NAME)

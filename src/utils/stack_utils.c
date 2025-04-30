@@ -82,7 +82,7 @@ struct s_stacks	init_stacks(size_t capacity, char *argv[])
 		capacity = 0;
 		while (temp[capacity] != NULL)
 			capacity++;
-		free(temp);
+		free_split(temp);
 	}
 	stacks.stack_a.name = 'a';
 	stacks.stack_a.capacity = capacity;
