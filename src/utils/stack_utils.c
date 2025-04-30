@@ -6,7 +6,7 @@
 /*   By: llage <llage@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 08:56:05 by llage             #+#    #+#             */
-/*   Updated: 2025/04/06 01:12:00 by llage            ###   ########.fr       */
+/*   Updated: 2025/04/30 17:57:02 by llage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static bool	fill_stacks(struct s_stacks *stacks, size_t capacity,
 		while (capacity)
 			stacks->stack_a.values[stacks->stack_a.size++]
 				= ft_atol(temp[--capacity]);
-		free(temp);
+		free_split(temp);
 	}
 	else
 	{
